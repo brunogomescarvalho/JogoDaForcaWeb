@@ -103,10 +103,6 @@ class JogoDaForca {
         this.input.focus();
     }
 
-    recomecar() {
-        location.reload();
-    }
-
     palavraCompleta() {
         return this.palavra == this.palavraOculta.join('');
     }
@@ -117,6 +113,20 @@ class JogoDaForca {
 
     jogadaInvalida(letraInformada) {
         return !isNaN(letraInformada) || letraInformada.trim().length == 0;
+    }
+
+    recomecar() {
+        this.indexImagem = 0;
+        this.tentativas = 0;
+        this.painelLetras.innerHTML = "";
+        this.imagemJogo.innerHTML = "";
+        this.botaoJogar.hidden = false;
+        this.input.hidden = false;
+        this.palavraOculta = [];
+        this.limparInput();
+        this.carregarImagem();
+        this.carregarPalavra();
+        this.criarPainelLetras();
     }
 }
 
