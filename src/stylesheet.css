@@ -4,7 +4,8 @@
 }
 
 body{
-    background-color: rgb(136, 148, 152);
+    background-color: rgb(108, 159, 176);
+    position: absolute;
 }
 
 .container {
@@ -18,26 +19,27 @@ body{
 .imagem-da-forca {
     border: 2px solid rgb(20, 18, 18);
     margin: 40px;
-
+   position: relative;
 }
 
 .txt-letra {
     font-family: 'Kanit', sans-serif;
-    width: 40%;
+    width: 5%;
     padding: 20px;
     margin: 40px;
     align-items: center;
+    text-align: center;
+    font-size: 28px;
 }
 
 .painel-letras {
-   
     max-width: 75%;  
     text-align: center;
 }
 
 .botoes {
     padding: 10px;
-
+  
 }
 
 .quadros {
@@ -48,9 +50,3 @@ body{
     text-align: center;
 }
 
-.txt-letra{
-    width: 5%;
-    text-align: center;
-    font-size: 28px;
-
-}

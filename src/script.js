@@ -1,5 +1,6 @@
 class JogoDaForca {
     botaoJogar = document.getElementById('botaoJogar');
+    botaoReiniciar = document.getElementById('botaoRecomecar');
     imagemJogo = document.getElementById('imagemForca');
     painelLetras = document.getElementById('painelLetras');
     input = document.getElementById('input');
@@ -20,7 +21,9 @@ class JogoDaForca {
         this.carregarImagem();
         this.carregarPalavra();
         this.criarPainelLetras();
-        this.botaoJogar.addEventListener('click', () => this.verificarJogada()); 
+        this.botaoJogar.addEventListener('click', () => this.verificarJogada());
+        this.botaoReiniciar.addEventListener('click', () => this.recomecar());
+        this.botaoJogar.hidden = false;
     }
 
     carregarImagem() {
@@ -51,6 +54,13 @@ class JogoDaForca {
 
     verificarJogada() {
         let letraInformada = input.value.toUpperCase();
+
+        if (this.jogadaInvalida(letraInformada)) {
+            this.limparInput();
+            alert('Informe uma letra');
+            return;
+        }
+
         let acertou = false;
 
         for (let i = 0; i < this.palavra.length; i++) {
@@ -66,14 +76,35 @@ class JogoDaForca {
             this.tentativas++;
         }
 
-        if (this.tentativas == 7)
-            this.alterarImagem(this.imagens.length - 2)
+        if (this.tentativas == 7) {
+            this.alterarImagem(this.imagens.length - 2);
+            this.mostrarMensagem(false);
+        }
 
-        if (this.palavraCompleta())
-            this.alterarImagem(this.imagens.length - 1)
+        if (this.palavraCompleta()) {
+            this.alterarImagem(this.imagens.length - 1);
+            this.mostrarMensagem(true);
+        }
 
+        this.limparInput();
+    }
+
+    mostrarMensagem(acertou) {
+        this.botaoJogar.hidden = true;
+        this.input.hidden = true;
+        let msg = acertou == true ? "Parabéns! Você acertou!" : `Fim de jogo! A palavra era ${this.palavra}`;
+        let paragrafo = document.createElement("p");
+        paragrafo.textContent = msg;
+        this.painelLetras.appendChild(paragrafo);
+    }
+
+    limparInput() {
         input.value = "";
         this.input.focus();
+    }
+
+    recomecar() {
+        location.reload();
     }
 
     palavraCompleta() {
@@ -82,6 +113,10 @@ class JogoDaForca {
 
     alterarImagem(index) {
         this.imagem.src = `src/assets/${this.imagens[index]}`;
+    }
+
+    jogadaInvalida(letraInformada) {
+        return !isNaN(letraInformada) || letraInformada.trim().length == 0;
     }
 }
 
