@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: rgba(18, 17, 20, 0.607);
+    background-color: rgba(0, 0, 0, 0.607);
     position: absolute;
 }
 
@@ -39,6 +39,7 @@ body {
 
 .botoes>button {
     padding: 10px;
+    border-radius: 5px;
 }
 
 .quadros {

@@ -103,18 +103,6 @@ class JogoDaForca {
         this.input.focus();
     }
 
-    palavraCompleta() {
-        return this.palavra == this.palavraOculta.join('');
-    }
-
-    alterarImagem(index) {
-        this.imagem.src = `src/assets/${this.imagens[index]}`;
-    }
-
-    jogadaInvalida(letraInformada) {
-        return !isNaN(letraInformada) || letraInformada.trim().length == 0;
-    }
-
     recomecar() {
         this.indexImagem = 0;
         this.tentativas = 0;
@@ -127,6 +115,18 @@ class JogoDaForca {
         this.carregarImagem();
         this.carregarPalavra();
         this.criarPainelLetras();
+    }
+
+    palavraCompleta() {
+        return this.palavra == this.palavraOculta.join('');
+    }
+
+    alterarImagem(index) {
+        this.imagem.src = `src/assets/${this.imagens[index]}`;
+    }
+
+    jogadaInvalida(letraInformada) {
+        return !isNaN(letraInformada) || letraInformada.trim().length == 0;
     }
 }
 
